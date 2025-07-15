@@ -1,404 +1,618 @@
-<!DOCTYPE html>  <html lang="hi">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Blessings Beyond Borders</title>  
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  
-    <style>  
-        * {  
-            margin: 0;  
-            padding: 0;  
-            box-sizing: border-box;  
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
-        }  :root {  
-        --primary: #ff9800;  
-        --secondary: #ffc107;  
-        --accent: #4caf50;  
-        --light: #fff8e1;  
-        --dark: #5d4037;  
-        --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
-    }  
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blessings Beyond Borders</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    body {  
-        background: linear-gradient(135deg, #fff8e1, #ffecb3);  
-        min-height: 100vh;  
-        padding: 20px;  
-        color: var(--dark);  
-        position: relative;  
-        overflow-x: hidden;  
-    }  
+        :root {
+            --primary: #ff9800;
+            --secondary: #ffc107;
+            --accent: #4caf50;
+            --light: #fff8e1;
+            --dark: #5d4037;
+            --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    body::before {  
-        content: "";  
-        position: absolute;  
-        top: 0;  
-        left: 0;  
-        width: 100%;  
-        height: 100%;  
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="3" fill="%23ff9800" opacity="0.2"/><circle cx="50" cy="30" r="4" fill="%23ffc107" opacity="0.2"/><circle cx="80" cy="20" r="2" fill="%23ff9800" opacity="0.2"/><circle cx="10" cy="70" r="3" fill="%23ffc107" opacity="0.2"/><circle cx="70" cy="80" r="4" fill="%23ff9800" opacity="0.2"/><circle cx="90" cy="60" r="2" fill="%23ffc107" opacity="0.2"/></svg>');  
-        background-repeat: repeat;  
-        opacity: 0.3;  
-        z-index: -1;  
-    }  
+        body {
+            background: linear-gradient(135deg, #fff8e1, #ffecb3);
+            min-height: 100vh;
+            padding: 20px;
+            color: var(--dark);
+            position: relative;
+            overflow-x: hidden;
+        }
 
-    .container {  
-        max-width: 800px;  
-        margin: 0 auto;  
-        background: white;  
-        border-radius: 20px;  
-        box-shadow: var(--shadow);  
-        overflow: hidden;  
-        position: relative;  
-    }  
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="20" cy="20" r="3" fill="%23ff9800" opacity="0.2"/><circle cx="50" cy="30" r="4" fill="%23ffc107" opacity="0.2"/><circle cx="80" cy="20" r="2" fill="%23ff9800" opacity="0.2"/><circle cx="10" cy="70" r="3" fill="%23ffc107" opacity="0.2"/><circle cx="70" cy="80" r="4" fill="%23ff9800" opacity="0.2"/><circle cx="90" cy="60" r="2" fill="%23ffc107" opacity="0.2"/></svg>');
+            background-repeat: repeat;
+            opacity: 0.3;
+            z-index: -1;
+        }
 
-    .page {  
-        padding: 30px;  
-        display: none;  
-    }  
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            position: relative;
+        }
 
-    .active {  
-        display: block;  
-    }  
+        .page {
+            padding: 30px;
+            display: none;
+        }
 
-    .header {  
-        text-align: center;  
-        padding: 20px 0;  
-        background: linear-gradient(135deg, var(--primary), var(--secondary));  
-        position: relative;  
-        overflow: hidden;  
-    }  
+        .active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
 
-    .header::before {  
-        content: "";  
-        position: absolute;  
-        top: 0;  
-        left: 0;  
-        width: 100%;  
-        height: 100%;  
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,20 Q40,5 60,20 T100,20" stroke="%23ffffff" stroke-width="2" fill="none" opacity="0.2"/><path d="M0,50 Q20,35 40,50 T80,50" stroke="%23ffffff" stroke-width="2" fill="none" opacity="0.2"/><circle cx="30" cy="70" r="5" fill="%23ffffff" opacity="0.2"/><circle cx="70" cy="30" r="5" fill="%23ffffff" opacity="0.2"/></svg>');  
-        background-repeat: repeat;  
-        opacity: 0.3;  
-    }  
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-    .header h1 {  
-        font-size: 2.2rem;  
-        color: white;  
-        margin-bottom: 10px;  
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);  
-        position: relative;  
-    }  
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            position: relative;
+            overflow: hidden;
+        }
 
-    .header p {  
-        font-size: 1.2rem;  
-        color: rgba(255, 255, 255, 0.9);  
-        max-width: 600px;  
-        margin: 0 auto;  
-        position: relative;  
-    }  
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path d="M20,20 Q40,5 60,20 T100,20" stroke="%23ffffff" stroke-width="2" fill="none" opacity="0.2"/><path d="M0,50 Q20,35 40,50 T80,50" stroke="%23ffffff" stroke-width="2" fill="none" opacity="0.2"/><circle cx="30" cy="70" r="5" fill="%23ffffff" opacity="0.2"/><circle cx="70" cy="30" r="5" fill="%23ffffff" opacity="0.2"/></svg>');
+            background-repeat: repeat;
+            opacity: 0.3;
+        }
 
-    .content {  
-        padding: 30px 20px;  
-    }  
+        .header h1 {
+            font-size: 2.2rem;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
 
-    .form-group {  
-        margin-bottom: 25px;  
-    }  
+        .header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
 
-    label {  
-        display: block;  
-        margin-bottom: 8px;  
-        font-weight: 600;  
-        color: var(--dark);  
-    }  
+        .content {
+            padding: 30px 20px;
+        }
 
-    input, select, textarea {  
-        width: 100%;  
-        padding: 15px;  
-        border: 2px solid #ffecb3;  
-        border-radius: 15px;  
-        font-size: 1rem;  
-        background: #fffdf6;  
-        transition: all 0.3s;  
-    }  
+        .form-group {
+            margin-bottom: 25px;
+        }
 
-    input:focus, select:focus, textarea:focus {  
-        border-color: var(--primary);  
-        outline: none;  
-        box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.2);  
-    }  
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
 
-    .btn {  
-        display: inline-block;  
-        padding: 15px 30px;  
-        background: linear-gradient(135deg, var(--primary), var(--secondary));  
-        color: white;  
-        border: none;  
-        border-radius: 50px;  
-        font-size: 1.2rem;  
-        font-weight: bold;  
-        cursor: pointer;  
-        transition: all 0.3s;  
-        text-align: center;  
-        box-shadow: var(--shadow);  
-        margin: 10px 5px;  
-        position: relative;  
-        overflow: hidden;  
-    }  
+        input, select, textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ffecb3;
+            border-radius: 15px;
+            font-size: 1rem;
+            background: #fffdf6;
+            transition: all 0.3s;
+        }
 
-    .btn:hover {  
-        transform: translateY(-3px);  
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);  
-    }  
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.2);
+        }
 
-    .btn:active {  
-        transform: translateY(0);  
-    }  
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            box-shadow: var(--shadow);
+            margin: 10px 5px;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .btn::after {  
-        content: "";  
-        position: absolute;  
-        top: -50%;  
-        left: -60%;  
-        width: 20px;  
-        height: 200%;  
-        background: rgba(255, 255, 255, 0.3);  
-        transform: rotate(25deg);  
-        transition: all 0.6s;  
-    }  
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
 
-    .btn:hover::after {  
-        left: 120%;  
-    }  
+        .btn:active {
+            transform: translateY(0);
+        }
 
-    .btn-secondary {  
-        background: linear-gradient(135deg, var(--accent), #81c784);  
-    }  
+        .btn::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(25deg);
+            transition: all 0.6s;
+        }
 
-    .gift-container {  
-        text-align: center;  
-        padding: 20px;  
-        margin: 30px 0;  
-        background: #fffdf6;  
-        border-radius: 20px;  
-        border: 3px dashed #ffecb3;  
-    }  
+        .btn:hover::after {
+            left: 120%;
+        }
 
-    .gift-image {  
-        max-width: 100%;  
-        height: 200px;  
-        object-fit: contain;  
-        margin: 20px 0;  
-        border-radius: 10px;  
-        box-shadow: var(--shadow);  
-    }  
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--accent), #81c784);
+        }
 
-    .countdown {  
-        font-size: 2rem;  
-        font-weight: bold;  
-        color: var(--primary);  
-        margin: 30px 0;  
-        text-align: center;  
-    }  
+        .gift-container {
+            text-align: center;
+            padding: 20px;
+            margin: 30px 0;
+            background: #fffdf6;
+            border-radius: 20px;
+            border: 3px dashed #ffecb3;
+        }
 
-    .blessing-message {  
-        background: #e8f5e9;  
-        padding: 25px;  
-        border-radius: 20px;  
-        margin: 30px 0;  
-        text-align: center;  
-        box-shadow: var(--shadow);  
-        border-left: 5px solid var(--accent);  
-    }  
+        .gift-image {
+            max-width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
 
-    .blessing-message h3 {  
-        font-size: 1.5rem;  
-        color: var(--dark);  
-        margin-bottom: 15px;  
-    }  
+        .countdown {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 30px 0;
+            text-align: center;
+        }
 
-    .blessing-text {  
-        font-size: 1.2rem;  
-        line-height: 1.6;  
-        margin-bottom: 15px;  
-    }  
+        .blessing-message {
+            background: #e8f5e9;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--accent);
+        }
 
-    .blessing-english {  
-        font-style: italic;  
-        color: #388e3c;  
-        border-top: 1px dashed #a5d6a7;  
-        padding-top: 15px;  
-        margin-top: 15px;  
-    }  
+        .blessing-message h3 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    .share-buttons {  
-        display: flex;  
-        justify-content: center;  
-        gap: 15px;  
-        margin: 30px 0;  
-    }  
+        .blessing-text {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
 
-    .share-btn {  
-        width: 60px;  
-        height: 60px;  
-        border-radius: 50%;  
-        display: flex;  
-        align-items: center;  
-        justify-content: center;  
-        color: white;  
-        font-size: 1.5rem;  
-        box-shadow: var(--shadow);  
-        transition: all 0.3s;  
-        cursor: pointer;  
-    }  
+        .blessing-english {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #388e3c;
+            border-top: 1px dashed #a5d6a7;
+            padding-top: 15px;
+            margin-top: 15px;
+            font-weight: 500;
+        }
 
-    .share-btn:hover {  
-        transform: translateY(-5px);  
-    }  
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
 
-    .whatsapp { background: #25d366; }  
-    .facebook { background: #3b5998; }  
-    .copy { background: #9c27b0; }  
+        .share-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
 
-    .donation-section {  
-        background: linear-gradient(135deg, #e8f5e9, #c8e6c9);  
-        padding: 30px;  
-        border-radius: 20px;  
-        margin: 30px 0;  
-        text-align: center;  
-        box-shadow: var(--shadow);  
-    }  
+        .share-btn:hover {
+            transform: translateY(-5px);
+        }
 
-    .donation-title {  
-        font-size: 1.8rem;  
-        color: var(--accent);  
-        margin-bottom: 20px;  
-    }  
+        .whatsapp { background: #25d366; }
+        .facebook { background: #3b5998; }
+        .copy { background: #9c27b0; }
 
-    .donation-goals {  
-        display: grid;  
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));  
-        gap: 20px;  
-        margin: 30px 0;  
-    }  
+        .donation-section {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
 
-    .goal-card {  
-        background: white;  
-        padding: 20px;  
-        border-radius: 15px;  
-        box-shadow: var(--shadow);  
-        text-align: center;  
-    }  
+        .donation-title {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    .goal-card i {  
-        font-size: 2.5rem;  
-        color: var(--accent);  
-        margin-bottom: 15px;  
-    }  
+        .donation-goals {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
 
-    .blink {  
-        animation: blink 1.5s infinite;  
-    }  
+        .goal-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
 
-    @keyframes blink {  
-        0% { opacity: 1; transform: scale(1); }  
-        50% { opacity: 0.7; transform: scale(1.05); }  
-        100% { opacity: 1; transform: scale(1); }  
-    }  
+        .goal-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
 
-    .footer {  
-        text-align: center;  
-        padding: 20px;  
-        background: var(--dark);  
-        color: white;  
-        margin-top: 30px;  
-    }  
+        .blink {
+            animation: blink 1.5s infinite;
+        }
 
-    .nav-buttons {  
-        display: flex;  
-        justify-content: space-between;  
-        margin-top: 20px;  
-    }  
+        @keyframes blink {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+            100% { opacity: 1; transform: scale(1); }
+        }
 
-    .blessing-selector {  
-        display: grid;  
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));  
-        gap: 15px;  
-        margin: 20px 0;  
-    }  
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: var(--dark);
+            color: white;
+            margin-top: 30px;
+        }
 
-    .blessing-option {  
-        border: 3px solid #ffecb3;  
-        border-radius: 15px;  
-        padding: 10px;  
-        cursor: pointer;  
-        transition: all 0.3s;  
-        text-align: center;  
-    }  
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
 
-    .blessing-option:hover {  
-        border-color: var(--primary);  
-        transform: translateY(-5px);  
-    }  
+        .blessing-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
 
-    .blessing-option.selected {  
-        border-color: var(--accent);  
-        background: #e8f5e9;  
-        transform: scale(1.05);  
-    }  
+        .blessing-option {
+            border: 3px solid #ffecb3;
+            border-radius: 15px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .blessing-option img {  
-        width: 100%;  
-        height: 80px;  
-        object-fit: cover;  
-        border-radius: 10px;  
-    }  
+        .blessing-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
 
-    .blessing-preview {  
-        margin: 30px 0;  
-        text-align: center;  
-    }  
+        .blessing-option.selected {
+            border-color: var(--accent);
+            background: #e8f5e9;
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+        }
 
-    @media (max-width: 600px) {  
-        .header h1 {  
-            font-size: 1.8rem;  
-        }  
-          
-        .content {  
-            padding: 20px 15px;  
-        }  
-          
-        .btn {  
-            padding: 12px 24px;  
-            font-size: 1rem;  
-            width: 100%;  
-            margin: 5px 0;  
-        }  
-          
-        .share-buttons {  
-            flex-wrap: wrap;  
-        }  
-          
-        .donation-goals {  
-            grid-template-columns: 1fr;  
-        }  
-    }  
+        .blessing-option.selected::after {
+            content: "✓";
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 30px;
+            height: 30px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
 
-    .shlok {  
-        font-style: italic;  
-        font-size: 1.1rem;  
-        color: #5d4037;  
-        margin: 20px 0;  
-        padding: 15px;  
-        background: rgba(255, 255, 255, 0.7);  
-        border-radius: 10px;  
-        border-left: 4px solid var(--primary);  
-    }  
-</style>
+        .blessing-option img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
 
-</head>  
-<body>  
-    <div class="container">  
-        <!-- Header -->  
-        <div class="header">  
-            <h1>Blessings Beyond Borders</h1>  
-            <p>Send
+        .blessing-preview {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .donation-appeal {
+            background: linear-gradient(135deg, #ffeb3b, #ff9800);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 3px solid #ff6d00;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 109, 0, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 109, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 109, 0, 0); }
+        }
+
+        .donation-appeal h3 {
+            font-size: 1.8rem;
+            color: #bf360c;
+            margin-bottom: 15px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .donation-appeal p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #5d4037;
+            margin-bottom: 10px;
+        }
+
+        .cartoon-text {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-shadow: 2px 2px 0 #ffecb3, 4px 4px 0 rgba(0,0,0,0.1);
+            letter-spacing: 1px;
+        }
+
+        .mandir-section {
+            background: linear-gradient(135deg, #f9fbe7, #fff9c4);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            box-shadow: var(--shadow);
+            border: 3px solid #ffd54f;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mandir-section::before {
+            content: "🕉️";
+            position: absolute;
+            font-size: 4rem;
+            opacity: 0.1;
+            top: 10px;
+            right: 10px;
+            transform: rotate(20deg);
+        }
+
+        .mandir-section h4 {
+            font-size: 1.5rem;
+            color: #5d4037;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .mandir-section p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #5d4037;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content {
+                padding: 20px 15px;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+                font-size: 1rem;
+                width: 100%;
+                margin: 5px 0;
+            }
+            
+            .share-buttons {
+                flex-wrap: wrap;
+            }
+            
+            .donation-goals {
+                grid-template-columns: 1fr;
+            }
+            
+            .blessing-text {
+                font-size: 1.3rem;
+            }
+            
+            .blessing-english {
+                font-size: 1.1rem;
+            }
+        }
+
+        .shlok {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #5d4037;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="cartoon-text">Blessings Beyond Borders</h1>
+            <p>Send divine blessings to your loved ones with Mahadev's grace</p>
+        </div>
+
+        <!-- Home Page (Receiver) -->
+        <div id="homePage" class="page active">
+            <div class="content">
+                <h2 style="text-align: center; margin-bottom: 20px; color: var(--primary);" class="cartoon-text">क्या काशी गिफ्ट भेजा है? - From Ramesh</h2>
+                
+                <div class="gift-container">
+                    <p style="font-size: 1.2rem; margin-bottom: 20px;">अपना नाम दाखें और महादेव का आशीर्वाद प्राप्त करें</p>
+                    
+                    <div class="form-group">
+                        <input type="text" id="receiverName" placeholder="अपना नाम दाखें" value="Priya">
+                    </div>
+                    
+                    <button class="btn" onclick="openGift()">
+                        <i class="fas fa-gift"></i> गिफ्ट खोलें
+                    </button>
+                </div>
+                
+                <!-- Donation Appeal Section -->
+                <div class="donation-appeal">
+                    <h3 class="cartoon-text">महादेव का वचन</h3>
+                    <p>दान को कभी ना टालें, गरीबों की मदद करने से भोलेनाथ प्रसन्न होते हैं।</p>
+                    <p>हमारे साथ जुड़कर <strong>200+ जरूरतमंदों</strong> की मदद करें और मंदिर निर्माण में योगदान दें।</p>
+                    <button class="btn blink" onclick="showPage('donatePage')" style="margin-top: 15px; background: linear-gradient(135deg, #e65100, #ff9800);">
+                        <i class="fas fa-hand-holding-heart"></i> अभी दान करें
+                    </button>
+                </div>
+                
+                <div style="text-align: center; margin-top: 10px;">
+                    <button class="btn btn-secondary" onclick="showPage('senderPage')">
+                        <i class="fas fa-share-alt"></i> अपना गिफ्ट भेजें
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Countdown Page -->
+        <div id="countdownPage" class="page">
+            <div class="content" style="text-align: center;">
+                <div class="countdown">
+                    <div id="countdown">10</div>
+                    <p style="font-size: 1.2rem; margin-top: 10px;">महादेव की कृपा जल्द हो रही है</p>
+                </div>
+                
+                <div style="margin: 40px auto; max-width: 300px;">
+                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23FF9800' opacity='0.2'/><path d='M50,15 L60,40 L85,40 L65,55 L75,85 L50,70 L25,85 L35,55 L15,40 L40,40 Z' fill='%23FFC107'/></svg>" alt="Shiva Blessing" class="gift-image">
+                </div>
+                
+                <p style="font-size: 1.1rem; color: var(--dark);">
+                    प्रभु शिव आपके जीवन में सुख, शांति और समृद्धि लाने के लिए अपनी कृपा बरसा रहे हैं
+                </p>
+            </div>
+        </div>
+
+        <!-- Gift Reveal Page -->
+        <div id="giftPage" class="page">
+            <div class="content" style="text-align: center;">
+                <h2 style="color: var(--primary); margin-bottom: 20px;" class="cartoon-text">महादेव का आशीर्वाद</h2>
+                
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23FFECB3'/><path d='M30,30 Q50,10 70,30 T90,50 Q70,70 50,90 T10,50 Q30,30 50,10' fill='%234CAF50' opacity='0.6'/><circle cx='50' cy='50' r='15' fill='%23FF9800'/></svg>" alt="Blessing" class="gift-image">
+                
+                <div class="blessing-message">
+                    <h3 class="cartoon-text">प्रिय <span id="receiverNameDisplay">Priya</span>,</h3>
+                    <p class="blessing-text cartoon-text">जय खेशवर! आपकी जीवन की सारी कामनाओं और जय चेतना की धारा बनी रहे!</p>
+                    <p class="blessing-english">May Mahadev remove all sorrow and bring you divine peace and eternal joy.</p>
+                </div>
+                
+                <div class="donation-appeal">
+                    <h3 class="cartoon-text">महादेव का वचन</h3>
+                    <p>दान को कभी ना टालें, गरीबों की मदद करने से भोलेनाथ प्रसन्न होते हैं।</p>
+                    <button class="btn blink" onclick="showPage('donatePage')" style="margin-top: 10px; background: linear-gradient(135deg, #e65100, #ff9800);">
+                        <i class="fas fa-hand-holding-heart"></i> अभी दान करें
+                    </button>
+                </div>
+                
+                <div class="share-buttons">
+                    <div class="share-btn whatsapp" title="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="share-btn facebook" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="share-btn copy" title="Copy Link">
+                        <i class="fas fa-copy"></i>
+                    </div>
+                </div>
+                
+                <button class="btn" onclick="showPage('homePage')">
+                    <i class="fas fa-home"></i> वापस घर जाएं
+                </button>
+                
+                <button class="btn btn-secondary" onclick="showPage('senderPage')">
+                    <i class="fas fa-gift"></i> अपना गिफ्ट भेजें
+                </button>
+            </div>
+        </div>
+
+        <!-- Sender Page -->
+        <div i
